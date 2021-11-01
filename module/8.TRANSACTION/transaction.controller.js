@@ -569,6 +569,7 @@ exports.cancelTransaction = async (req, res) => {
       : []
 
 
+    console.log("ini wingman", getWingmanDeviceToken)
 
     if (getWingmanDeviceToken.length > 0) {
       let bodyNotif = {
@@ -600,7 +601,10 @@ exports.cancelTransaction = async (req, res) => {
 
       await sendNotif(bodyNotif)
         .then((result) => {
-
+          console.log("/api/v1/kol/canceled", {
+            result: result,
+            getIndex: getIndex
+          })
           res.status(200).json({
             // getWingman: getWingman,
             // getRadiusWingman: getRadiusWingman,
@@ -616,6 +620,7 @@ exports.cancelTransaction = async (req, res) => {
           })
         })
         .catch(errNottif => {
+          console.log(getIndex)
           res.status(400).json({
             status: 400,
             messageNotif: errNottif.message
