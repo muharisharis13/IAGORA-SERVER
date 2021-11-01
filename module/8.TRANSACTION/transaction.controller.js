@@ -666,7 +666,7 @@ exports.cancelTransaction = async (req, res) => {
 
       await sendNotif(bodyNotif)
         .then((result) => {
-          console.log("/api/v1/kol/canceled", {
+          console.log("jika sama", {
             result: result,
             getIndex: getIndex1
           })
