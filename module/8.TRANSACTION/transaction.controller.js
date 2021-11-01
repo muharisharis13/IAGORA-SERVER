@@ -529,7 +529,7 @@ exports.cancelTransaction = async (req, res) => {
     const lat = getPasar.lat
     const long = getPasar.long
 
-    const getWingmanModels = await KolModels.find();
+    const getWingmanModels = await KolModels.find({ active: true });
 
     const getUser = await UserModels.findOne({ _id: id_user })
 
@@ -558,7 +558,7 @@ exports.cancelTransaction = async (req, res) => {
 
     const wingmanWithDistanceFilterUnder40 = await getRadiusWingman.slice(0, 5).sort((a, b) => (a.radius > b.radius) ? 1 : ((b.radius > a.radius) ? -1 : 0)).filter(item => parseFloat(item.radius) <= parseFloat(40.0))
 
-    let getIndex = parseInt(index) + parseInt(1);
+    let getIndex = Math.floor(Math.random() * 2);
     // parseInt(index) + parseInt(1)
     // Math.floor(Math.random() * 5);
     const getWingmanDeviceToken = wingmanWithDistanceFilterUnder40.length > 0 ?

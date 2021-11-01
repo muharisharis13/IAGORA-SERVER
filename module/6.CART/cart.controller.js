@@ -40,7 +40,7 @@ exports.findWingman = async (req, res) => {
     const lat = getPasar.lat
     const long = getPasar.long
 
-    const getWingmanModels = await KolModels.find();
+    const getWingmanModels = await KolModels.find({ active: true });
 
     const getUser = await UserModels.findOne({ _id: getID(req) })
 

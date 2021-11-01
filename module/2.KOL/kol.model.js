@@ -13,6 +13,7 @@ const post = mongoose.Schema({
   img_profile: { type: String, default: "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" },
   device_token: { type: String, default: "null" },
   balance: { type: Number, default: 0 },
+  active: { type: Boolean, default: false },
   last_login: { type: Date, default: Date.now() },
   created_at: { type: Date, default: Date.now() },
   updated_at: { type: Date, default: Date.now() },

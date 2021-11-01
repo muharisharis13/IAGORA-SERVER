@@ -6,6 +6,46 @@ const { insetifKOLModels } = require("../5.UTL/insetif/insetif.KOL.model")
 const { ProductModels } = require("../4.PRODUCT/product.model")
 const { list_price_productModel } = require("../5.UTL/list_price/list_price.product.model")
 
+exports.setActive = async (req, res) => {
+  const { active } = req.params
+  try {
+
+    if (JSON.parse(active) === true) {
+      await KolModels.findOneAndUpdate({ _id: getID(req) }, {
+        active: false
+      })
+        .then(result => {
+          res.status(200).json({
+            status: 200,
+            success: {
+              data: result,
+              message: "Berhasil Set Ke False"
+            }
+          })
+        })
+    }
+    else {
+      await KolModels.findOneAndUpdate({ _id: getID(req) }, {
+        active: true
+      })
+        .then(result => {
+          res.status(200).json({
+            status: 200,
+            success: {
+              data: result,
+              message: "Berhasil Set Ke True"
+            }
+          })
+        })
+    }
+
+  } catch (err) {
+    res.status(500).json({
+      status: 500,
+      messsage: err.message
+    })
+  }
+}
 
 exports.getProductbyIdPasar = async (req, res) => {
   const { id_pasar } = req.params
