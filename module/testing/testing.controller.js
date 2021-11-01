@@ -48,6 +48,26 @@ function getDistanceFromLatLonInKm({ lat1, lon1, lat2, lon2 }) {
 }
 
 
+exports.uploadImageALibaba = async (req, res) => {
+  try {
+
+    const ossClient = new AlibabOss();
+
+    const result = await ossClient.uploadBuffer("woolha-alibaba", `${req.file.originalname}`, req.file.buffer);
+    console.log(result);
+
+    res.json({
+      status: 200,
+      success: "ok"
+    })
+
+  } catch (err) {
+    res.status(500).json({
+      status: 500,
+      message: err.message
+    })
+  }
+}
 
 
 exports.sendNotifToWingman = async (req, res) => {
