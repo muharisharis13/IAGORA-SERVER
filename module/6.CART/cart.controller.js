@@ -76,7 +76,7 @@ exports.findWingman = async (req, res) => {
       : []
 
 
-
+    console.log("ini wingman", getWingmanDeviceToken)
     if (getWingmanDeviceToken.length > 0) {
         let bodyNotif = {
           to: `${getWingmanDeviceToken.device_token}`,
