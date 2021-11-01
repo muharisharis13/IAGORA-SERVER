@@ -18,7 +18,6 @@ exports.setActive = async (req, res) => {
           res.status(200).json({
             status: 200,
             success: {
-              data: result,
               message: "Berhasil Set Ke False"
             }
           })
@@ -32,7 +31,6 @@ exports.setActive = async (req, res) => {
           res.status(200).json({
             status: 200,
             success: {
-              data: result,
               message: "Berhasil Set Ke True"
             }
           })
@@ -131,6 +129,7 @@ exports.getInfoKol = async (req, res) => {
             email: result.email,
             img_profile: result.img_profile,
             balance: result.balance,
+            active: result.active
           }
         })
       })
