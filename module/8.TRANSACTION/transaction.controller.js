@@ -558,7 +558,7 @@ exports.cancelTransaction = async (req, res) => {
 
     const wingmanWithDistanceFilterUnder40 = await getRadiusWingman.slice(0, 5).sort((a, b) => (a.radius > b.radius) ? 1 : ((b.radius > a.radius) ? -1 : 0)).filter(item => parseFloat(item.radius) <= parseFloat(40.0))
 
-    let getIndex = Math.floor(Math.random() * 2);
+    let getIndex = parseInt(index) + parseInt(1);
     // parseInt(index) + parseInt(1)
     // Math.floor(Math.random() * 5);
     const getWingmanDeviceToken = wingmanWithDistanceFilterUnder40.length > 0 ?
@@ -566,7 +566,6 @@ exports.cancelTransaction = async (req, res) => {
         await getWingmanModels.filter(id => `${id._id}` === `${wingmanWithDistanceFilterUnder40[getIndex].id_wingman}`)
         : []
       : []
-
 
     console.log("ini wingman", getWingmanDeviceToken)
 
