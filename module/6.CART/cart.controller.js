@@ -132,6 +132,9 @@ exports.findWingman = async (req, res) => {
 
     }
     else {
+      console.log("/api/v1/user/wingman/find", {
+        getIndex
+      })
       res.status(200).json({
         status: 200,
         success: {
