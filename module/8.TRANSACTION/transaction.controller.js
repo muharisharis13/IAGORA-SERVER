@@ -525,7 +525,11 @@ exports.cancelTransaction = async (req, res) => {
   const { id_cart, id_user, id_pasar, list_product, index = 0 } = req.body
   try {
 
-
+    console.log({
+      id_pasar,
+      id_user,
+      id_cart
+    })
     const getPasar = await PasarModels.findOne({ _id: id_pasar })
     const lat = getPasar.lat
     const long = getPasar.long
