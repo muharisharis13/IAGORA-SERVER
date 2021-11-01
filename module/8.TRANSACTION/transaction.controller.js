@@ -570,7 +570,7 @@ exports.cancelTransaction = async (req, res) => {
 
     console.log("ini wingman", getWingmanDeviceToken)
 
-    if (getWingmanDeviceToken.length > 0 && getIndex !== index) {
+    if (getWingmanDeviceToken.length > 0) {
       let bodyNotif = {
         to: `${getWingmanDeviceToken[0].device_token}`,
         priority: 'high',
@@ -627,73 +627,7 @@ exports.cancelTransaction = async (req, res) => {
         })
 
     }
-    else if (getWingmanDeviceToken.length > 0 && getIndex === index) {
-      let getIndex1 = Math.floor(Math.random() * 2 - index);
-      // parseInt(index) + parseInt(1)
-      // Math.floor(Math.random() * 5);
-      const getWingmanDeviceToken = wingmanWithDistanceFilterUnder40.length > 0 ?
-        wingmanWithDistanceFilterUnder40[getIndex1] ?
-          await getWingmanModels.filter(id => `${id._id}` === `${wingmanWithDistanceFilterUnder40[getIndex1].id_wingman}`)
-          : []
-        : []
 
-      let bodyNotif = {
-        to: `${getWingmanDeviceToken[0].device_token}`,
-        priority: 'high',
-        soundName: "default",
-        data: {
-          notification: {
-            title: "Orderan Masuk",
-            body: `Segera Check Apps`,
-            image: ""
-          },
-          details: {
-            id_cart: id_cart,
-            id_user: getUser._id,
-            id_pasar: id_pasar,
-            data_user: {
-              phone_number: getUser.phone_number,
-              full_name: getUser.full_name,
-              img_profile: getUser.img_profile
-            },
-            list_product: list_product,
-            index: getIndex1
-          },
-          type: "new-order",
-
-        }
-      }
-
-      await sendNotif(bodyNotif)
-        .then((result) => {
-          console.log("jika sama", {
-            result: result,
-            getIndex: getIndex1
-          })
-          res.status(200).json({
-            // getWingman: getWingman,
-            // getRadiusWingman: getRadiusWingman,
-            // wingmanWithDistance: wingmanWithDistance,
-            // getWingmanModels: getWingmanModels,
-            // result: result
-            status: 200,
-            success: {
-              message: "Mencari Wingman Lain, yang lama gak mau",
-              index: getIndex1,
-              result
-            }
-          })
-        })
-        .catch(errNottif => {
-          console.log(getIndex1)
-          res.status(400).json({
-            status: 400,
-            messageNotif: errNottif.message
-          })
-        })
-
-
-    }
     else {
 
       let bodyNotif = {
