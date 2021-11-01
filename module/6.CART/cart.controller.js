@@ -107,7 +107,10 @@ exports.findWingman = async (req, res) => {
 
         await sendNotif(bodyNotif)
           .then((result) => {
-
+            console.log("/api/v1/user/wingman/find", {
+              getIndex: getIndex,
+              result: result
+            })
             res.status(200).json({
               // getWingman: getWingman,
               // getRadiusWingman: getRadiusWingman,
