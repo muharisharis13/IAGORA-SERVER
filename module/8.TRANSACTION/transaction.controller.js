@@ -628,12 +628,12 @@ exports.cancelTransaction = async (req, res) => {
 
     }
     else if (getWingmanDeviceToken.length > 0 && getIndex === index) {
-      let getIndex = Math.floor(Math.random() * 2);
+      let getIndex1 = Math.floor(Math.random() * 2);
       // parseInt(index) + parseInt(1)
       // Math.floor(Math.random() * 5);
       const getWingmanDeviceToken = wingmanWithDistanceFilterUnder40.length > 0 ?
-        wingmanWithDistanceFilterUnder40[getIndex] ?
-          await getWingmanModels.filter(id => `${id._id}` === `${wingmanWithDistanceFilterUnder40[getIndex].id_wingman}`)
+        wingmanWithDistanceFilterUnder40[getIndex1] ?
+          await getWingmanModels.filter(id => `${id._id}` === `${wingmanWithDistanceFilterUnder40[getIndex1].id_wingman}`)
           : []
         : []
 
@@ -657,7 +657,7 @@ exports.cancelTransaction = async (req, res) => {
               img_profile: getUser.img_profile
             },
             list_product: list_product,
-            index: getIndex
+            index: getIndex1
           },
           type: "new-order",
 
@@ -668,7 +668,7 @@ exports.cancelTransaction = async (req, res) => {
         .then((result) => {
           console.log("/api/v1/kol/canceled", {
             result: result,
-            getIndex: getIndex
+            getIndex: getIndex1
           })
           res.status(200).json({
             // getWingman: getWingman,
@@ -679,13 +679,13 @@ exports.cancelTransaction = async (req, res) => {
             status: 200,
             success: {
               message: "Mencari Wingman Lain, yang lama gak mau",
-              index: getIndex,
+              index: getIndex1,
               result
             }
           })
         })
         .catch(errNottif => {
-          console.log(getIndex)
+          console.log(getIndex1)
           res.status(400).json({
             status: 400,
             messageNotif: errNottif.message
