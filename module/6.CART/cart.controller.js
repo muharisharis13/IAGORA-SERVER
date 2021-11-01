@@ -68,7 +68,7 @@ exports.findWingman = async (req, res) => {
 
 
     const wingmanWithDistanceFilterUnder40 = await getRadiusWingman.filter(item => parseFloat(item.radius) <= parseFloat(40.0))
-    let getIndex = Math.floor(Math.random() * 1);
+    let getIndex = Math.floor(Math.random() * 2);
     const getWingmanDeviceToken = wingmanWithDistanceFilterUnder40.length > 0 ?
       wingmanWithDistanceFilterUnder40[getIndex] ?
         await getWingmanModels.filter(id => `${id._id}` === `${wingmanWithDistanceFilterUnder40[getIndex].id_wingman}`)

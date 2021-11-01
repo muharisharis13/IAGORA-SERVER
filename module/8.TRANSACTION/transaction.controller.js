@@ -563,7 +563,7 @@ exports.cancelTransaction = async (req, res) => {
 
     const wingmanWithDistanceFilterUnder40 = await getRadiusWingman.slice(0, 5).sort((a, b) => (a.radius > b.radius) ? 1 : ((b.radius > a.radius) ? -1 : 0)).filter(item => parseFloat(item.radius) <= parseFloat(40.0))
 
-    let getIndex = Math.floor(Math.random() * 1);
+    let getIndex = Math.floor(Math.random() * 2);
     // parseInt(index) + parseInt(1)
     // Math.floor(Math.random() * 5);
     const getWingmanDeviceToken = wingmanWithDistanceFilterUnder40.length > 0 ?
@@ -588,13 +588,13 @@ exports.cancelTransaction = async (req, res) => {
           },
           details: {
             id_cart: id_cart,
+            id_user: getUser._id,
+            id_pasar: id_pasar,
             data_user: {
-              id_user: getUser._id,
               phone_number: getUser.phone_number,
               full_name: getUser.full_name,
               img_profile: getUser.img_profile
             },
-            id_pasar: id_pasar,
             list_product: list_product,
             index: getIndex
           },
