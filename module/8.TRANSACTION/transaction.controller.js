@@ -628,7 +628,7 @@ exports.cancelTransaction = async (req, res) => {
 
     }
     else if (getWingmanDeviceToken.length > 0 && getIndex === index) {
-      let getIndex1 = Math.floor(Math.random() * 2);
+      let getIndex1 = Math.floor(Math.random() * 2 - index);
       // parseInt(index) + parseInt(1)
       // Math.floor(Math.random() * 5);
       const getWingmanDeviceToken = wingmanWithDistanceFilterUnder40.length > 0 ?
